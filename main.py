@@ -7,46 +7,54 @@ class Department:
 
 
 class Employee:
-    def __init__(self, code, name, salary):
+    def __init__(self, code, name, salary, department):
         self.__code = code
         self.__name = name
         self.__salary = salary
+        self.department = department
+        self.hours = 8
 
     def calc_bonus(self):
         pass
 
     def get_hours(self):
-        pass
+        return self.hours
+
+    def get_salary(self):
+        return self.__salary
 
     def set_employee(self, code, name, salary):
         self.code = code
         self.__name = name
         self.salary = salary
 
+    def set_department(self, department):
+        self.__department = department
+
+    def get_department(self):
+        return self.department.name
+
 
 class Manager(Employee):
     def __init__(self, code, name, salary):
-        super().__init__(code, name, salary)
-        self.__department = Department('managers', 1)
+        department = Department('managers', 1)
+        super().__init__(code, name, salary, department)
 
     def calc_bonus(self):
-        return self.salary * 0.15
-
-    def get_departament(self):
-        return self.__department
+        return super().get_salary() * 0.15
 
 
 class Seller(Employee):
     def __init__(self, code, name, salary):
-        super().__init__(code, name, salary)
-        self.departament = Department('sellers', 2)
+        department = Department('sellers', 2)
+        super().__init__(code, name, salary, department)
         self.__sales = 0
-
-    def get_hours(self):
-        return 6
 
     def get_sales(self):
         return self.__sales
 
     def put_sales(self, sales):
         self.__sales += sales
+
+    def calc_bonus(self):
+        return self.__sales * 0.15
