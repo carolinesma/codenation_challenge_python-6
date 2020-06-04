@@ -1,4 +1,6 @@
 
+import abc
+
 
 class Department:
     def __init__(self, name, code):
@@ -6,7 +8,7 @@ class Department:
         self.code = code
 
 
-class Employee:
+class Employee(abc.ABC):
     def __init__(self, code, name, salary, department):
         self.__code = code
         self.__name = name
@@ -14,6 +16,7 @@ class Employee:
         self.department = department
         self.hours = 8
 
+    @abc.abstractmethod
     def calc_bonus(self):
         pass
 
